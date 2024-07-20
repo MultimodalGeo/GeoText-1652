@@ -108,7 +108,7 @@ This entry provides a detailed description and annotations for a single image in
     [0.7388443350791931, 0.8320053219795227, 0.5213109254837036, 0.33447015285491943]
   ]
 }
-
+```
 If you find GeoText-1652 useful for your work please cite:
 ```
 @inproceedings{chu2024towards, 
