@@ -180,7 +180,7 @@ BOX_TRESHOLD_right = 0.25
 TEXT_TRESHOLD_right = 0.2
 
 
-folder_path = "/storage_fast/mchu/Multi-model/geotext/GeoText/train"
+folder_path = "geotext/GeoText/train"
 # Open the original csv file
 
 count_main = 0
