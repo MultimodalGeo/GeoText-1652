@@ -7,6 +7,14 @@ An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-16
 - [ ] Part IV: Train and Test
 - [ ] Part V: Visual Grounding
 
+Dataset Introduction
+
+| Split                   | #Imgs  | #Global Descriptions | #Bbox-Texts | #Classes | #Univ. |
+|-------------------------|--------|----------------------|-------------|----------|--------|
+| Training<sub>drone</sub>     | 37,854 | 113,562             | 113,367     | 701      | 33     |
+| Training<sub>satellite</sub> | 701    | 2,103               | 1,709       | 701      | 33     |
+| Training<sub>ground</sub>    | 11,663 | 34,989              | 14,761      | 701      | 33     |
+
 
 If you find GeoText-1652 useful for your work please cite:
 ```
