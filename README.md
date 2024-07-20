@@ -33,8 +33,8 @@ This repository includes training and testing data organized as follows:
 
 ### Directories
 
-- **`train`**: Contains training datasets.
-- **`test`**: Contains testing datasets.
+- **`train`**: Contains training images.
+- **`test`**: Contains testing images.
 
 ### Files
 
