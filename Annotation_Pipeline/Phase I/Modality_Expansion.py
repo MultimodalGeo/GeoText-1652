@@ -33,10 +33,10 @@ negative = []
 neutral = []
 
 def analyze_description(description):
-    # 替换成你的 OpenAI API 密钥
+    # OpenAI API key
     openai.api_key = ''
 
-    # 调用 GPT-3.5 API
+    #  GPT-3.5 API
     response = openai.Completion.create(
       engine="text-davinci-003",
       prompt=description,
@@ -103,7 +103,7 @@ print('Initialization Finished')
 Query = 'Please describe the [main object] in the [center of the image] with its [characteristics] and [colors] in this image. Make sure to [exclude] any [feelings], or [inferences] from the description'
 Query_1 = 'Describe [spatial relationships] of [the object in the center of the image] with [other objects] in the image.[spatial relationship] includes [On the right side] of the [main object], and [On the left side] of the [main object]. Make sure to [exclude] any [feelings], or [inferences] from the description.' 
 
-folder_path = "/storage_fast/mchu/Multi-model/try_blip2/picforvisual/shanghai" #@param {type:"string"}
+folder_path = "" #@param {type:"string"}
 max_filename_len = 128 #@param {type:"integer"}
 
 def go_or_back(msg):
@@ -162,12 +162,12 @@ for i in range(0,10):
                               max_new_tokens=120,
                               max_length=2000)[0]
             llm_message = llm_message +'[MOF]'+ llm_message_1
-            # description = input("请输入你的描述: ")
+            # description = input("Description: ")
             description_origin = llm_message
             description = 'There is a description of some buildings, please tell me if it is reasonable or unreasonable, and also tell me the reason for your judgement:' + description_origin
-            # 分析描述
+            # analyze the description
             analysis = analyze_description(description)
-            print("GPT-3.5 分析结果:", analysis)
+            print("GPT-3.5 :", analysis)
 
             # 检查关键词
             result = check_keywords(analysis, ["reasonable","Reasonable"], ["unreasonable","not reasonable"])
