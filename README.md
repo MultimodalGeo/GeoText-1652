@@ -87,6 +87,28 @@ GeoText_Dataset_Official/
 These files are critical for the machine learning models dealing with [specific task, e.g., image classification, object detection, etc.]. The JSON files include annotations necessary for training and testing the models.
 
 
+
+### Example Entry in `train.json`
+
+This entry provides a detailed description and annotations for a single image in the training dataset:
+
+```json
+{
+  "image_id": "0839/image-43.jpeg",
+  "image": "train/0839/image-43.jpeg",
+  "caption": "In the center of the image is a large, modern office building with several floors. The building has a white facade with large windows that go all the way up to the top floor. There are several balconies on the upper floors, with white railings and green plants. The object in the center of the image is a large office building with several floors and a white facade. The building is surrounded by several other buildings, which are much smaller in size. On the right side of the building, there is a small parking lot with several cars parked in it. On the left side of the building, there is a street with cars driving on it. In the background, there are several trees and buildings that are further away.",
+  "sentences": [
+    "The object in the center of the image is a large office building with several floors and a white facade",
+    "On the upper middle side of the building, there is a street with cars driving on it",
+    "On the middle right side of the building, there is a small parking lot with several cars parked in it"
+  ],
+  "bboxes": [
+    [0.408688485622406, 0.6883664131164551, 0.38859522342681885, 0.6234817504882812],
+    [0.2420489490032196, 0.3855597972869873, 0.30488067865371704, 0.2891976535320282],
+    [0.7388443350791931, 0.8320053219795227, 0.5213109254837036, 0.33447015285491943]
+  ]
+}
+
 If you find GeoText-1652 useful for your work please cite:
 ```
 @inproceedings{chu2024towards, 
