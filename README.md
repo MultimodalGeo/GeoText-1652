@@ -54,7 +54,7 @@ This repository includes training and testing data organized as follows:
 This dataset is designed to support the development and testing of models in geographical location recognition, providing images from multiple views at numerous unique locations.
 
 ### Directory Structure
-
+```
 GeoText_Dataset_Official/
 ├── test/
 │ ├── gallery_no_train(250)/ // Contains images from 250 different locations, each with drone, street, and satellite views
@@ -83,7 +83,7 @@ GeoText_Dataset_Official/
 │ ├── 0701/
 ├── test_951_version.json // JSON file with annotations for the test dataset
 ├── train.json // JSON file with annotations for the training dataset
-
+```
 These files are critical for the machine learning models dealing with [specific task, e.g., image classification, object detection, etc.]. The JSON files include annotations necessary for training and testing the models.
 
 
