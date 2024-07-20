@@ -41,13 +41,11 @@ This repository includes training and testing data organized as follows:
 - **`train.json`**
   - **Type**: JSON Source File
   - **Size**: 196,432 KB
-  - **Created**: 2024/2/29 16:55
   - Description: Contains the annotations and metadata for the training dataset.
 
 - **`test_951_version.json`**
   - **Type**: JSON Source File
   - **Size**: 46,809 KB
-  - **Created**: 2024/2/29 16:46
   - Description: Contains the annotations and metadata for the test dataset.
 
 These files are critical for the machine learning models dealing with [specific task, e.g., image classification, object detection, etc.]. The JSON files include annotations necessary for training and testing the models.
