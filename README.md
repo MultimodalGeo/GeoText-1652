@@ -48,6 +48,42 @@ This repository includes training and testing data organized as follows:
   - **Size**: 46,809 KB
   - Description: Contains the annotations and metadata for the test dataset.
 
+
+## GeoText Dataset Official Structure
+
+This dataset is designed to support the development and testing of models in geographical location recognition, providing images from multiple views at numerous unique locations.
+
+### Directory Structure
+
+GeoText_Dataset_Official/
+├── test/
+│ ├── gallery_no_train(250)/ // Contains images from 250 different locations, each with drone, street, and satellite views
+│ │ ├── 0001/
+│ │ │ ├── drone_view.jpg // Drone view image
+│ │ │ ├── street_view.jpg // Street view image
+│ │ │ ├── satellite_view.jpg // Satellite view image
+│ │ ├── 0002/
+│ │ ├── ... // More locations
+│ │ ├── 0250/
+│ ├── query(701)/ // Contains images from 701 different locations for query purposes, each with drone, street, and satellite views
+│ │ ├── 0001/
+│ │ │ ├── drone_view.jpg // Drone view image
+│ │ │ ├── street_view.jpg // Street view image
+│ │ │ ├── satellite_view.jpg // Satellite view image
+│ │ ├── 0002/
+│ │ ├── ... // More locations
+│ │ ├── 0701/
+├── train/ // Contains images from 701 different locations, each with drone, street, and satellite views for training
+│ ├── 0001/
+│ │ ├── drone_view.jpg // Drone view image
+│ │ ├── street_view.jpg // Street view image
+│ │ ├── satellite_view.jpg // Satellite view image
+│ ├── 0002/
+│ ├── ... // More locations
+│ ├── 0701/
+├── test_951_version.json // JSON file with annotations for the test dataset
+├── train.json // JSON file with annotations for the training dataset
+
 These files are critical for the machine learning models dealing with [specific task, e.g., image classification, object detection, etc.]. The JSON files include annotations necessary for training and testing the models.
 
 
