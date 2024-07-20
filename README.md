@@ -108,7 +108,7 @@ This entry provides a detailed description and annotations for a single image in
     [0.7388443350791931, 0.8320053219795227, 0.5213109254837036, 0.33447015285491943]
   ]
 }
-
+```
 ### Annotation Details
 
 - **Caption**: Provides a global description for the entire image, framing the context for more detailed analyses.
@@ -121,7 +121,7 @@ This entry provides a detailed description and annotations for a single image in
 
 These annotations are crucial for tasks that require precise spatial localization, such as object detection and scene parsing, providing essential training data for machine learning models to accurately learn and predict.
 
-```
+
 If you find GeoText-1652 useful for your work please cite:
 ```
 @inproceedings{chu2024towards, 
