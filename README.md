@@ -108,6 +108,19 @@ This entry provides a detailed description and annotations for a single image in
     [0.7388443350791931, 0.8320053219795227, 0.5213109254837036, 0.33447015285491943]
   ]
 }
+
+### Annotation Details
+
+- **Caption**: Provides a global description for the entire image, framing the context for more detailed analyses.
+
+- **Sentences**: Each sentence is aligned with a specific part of the image. These sentences are directly related to the bounding boxes, providing localized descriptions to enhance model training in tasks like image captioning and object detection.
+
+- **Bounding Boxes (`bboxes`)**: Specified as arrays of coordinates in the format `[cx, cy, w, h]`, where:
+  - `cx` (center x-coordinate) and `cy` (center y-coordinate) are the center coordinates of the bounding box relative to the image dimensions.
+  - `w` (width) and `h` (height) represent the width and height of the bounding box, respectively. 
+
+These annotations are crucial for tasks that require precise spatial localization, such as object detection and scene parsing, providing essential training data for machine learning models to accurately learn and predict.
+
 ```
 If you find GeoText-1652 useful for your work please cite:
 ```
