@@ -2,8 +2,8 @@
 An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching
 
 - [x] Part I: Dataset
-- [ ] Part II: Annotation Pipeline
-- [ ] Part III: Data Feature
+- [x] Part II: Annotation Pipeline
+- [x] Part III: Data Feature
 - [ ] Part IV: Train and Test
 - [ ] Part V: Visual Grounding
 
