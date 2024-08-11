@@ -8,11 +8,11 @@ An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-16
 - [ ] Part V: Visual Grounding
 
 
-### Dataset
-## Download Link
+## Dataset
+### Download Link
 You could directly download the dataset from the google drive public link: https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing. 
 
-## Statistics of GeoText-1652
+### Statistics of GeoText-1652
 
 Training and test sets all include the image, global description, bbox-text pair and building numbers. We note that there is no overlap between the 33 universities of the training set and the 39 universities of the test sets. Three platforms are considered, i.e., drone, satellite, and ground cameras.
 
@@ -27,7 +27,7 @@ Training and test sets all include the image, global description, bbox-text pair
 
 
 The dataset 
-## Dataset Structure
+### Dataset Structure
 
 This repository includes training and testing data organized as follows:
 
@@ -150,7 +150,7 @@ These annotations are crucial for tasks that require precise spatial localizatio
 
 
 If you find GeoText-1652 useful for your work please cite:
-```
+```bib
 @inproceedings{chu2024towards, 
       title={Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching}, 
       author={Chu, Meng and Zheng, Zhedong and Ji, Wei and Wang, Tingyu and Chua, Tat-Seng}, 
