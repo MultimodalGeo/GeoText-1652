@@ -1,0 +1,22 @@
+torch -f https://download.pytorch.org/whl/cu118
+torchvision -f https://download.pytorch.org/whl/cu118
+torchaudio -f https://download.pytorch.org/whl/cu118
+
+
+
+
+timm==0.4.9
+transformers==4.12.5
+ruamel_yaml
+opencv-python-headless
+scikit-image
+matplotlib
+chardet
+charset_normalizer
+PyOpenGL
+
+
+
+pycocotools
+pycocoevalcap
+
