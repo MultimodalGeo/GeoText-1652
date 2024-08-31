@@ -150,7 +150,6 @@ These annotations are crucial for tasks that require precise spatial localizatio
 
 
 If you find GeoText-1652 useful for your work please cite:
-```
 ```bib
 @inproceedings{chu2024towards, 
       title={Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching}, 
@@ -158,5 +157,4 @@ If you find GeoText-1652 useful for your work please cite:
       booktitle={EECV}, 
       year={2024} 
       }
-```
 ```
