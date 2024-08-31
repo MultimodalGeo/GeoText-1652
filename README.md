@@ -4,7 +4,7 @@ An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-16
 - [x] Part I: Dataset
 - [x] Part II: Annotation Pipeline
 - [x] Part III: Data Feature
-- [ ] Part IV: Train and Test
+- [X] Part IV: Train and Test
 - [ ] Part V: Visual Grounding
 
 
