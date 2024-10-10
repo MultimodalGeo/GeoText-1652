@@ -163,13 +163,13 @@ Follow the prompts to complete the Miniconda installation.
 Create a new conda environment for the project:
 
 ```bash
-conda create -n xvlm python=3.8
+conda create -n gt python=3.8
 ```
 
 Activate the environment:
 
 ```bash
-conda activate xvlm
+conda activate gt
 ```
 
 ### 4. Install Requirements
