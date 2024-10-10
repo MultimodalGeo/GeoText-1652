@@ -10,8 +10,8 @@ import utils
 from tqdm import tqdm
 
 from utils.hdfs_io import hexists, hcopy, hopen
-from vqaTools.vqaEval import VQAEval
-from refTools.evaluation.refEvaluation import RefEvaluation
+
+
 
 
 def pre_question(question, max_ques_words):

@@ -9,7 +9,7 @@ import torch
 from torchvision.transforms.functional import hflip, resize
 
 from dataset.utils import pre_caption
-from refTools.refer_python3 import REFER
+
 
 from torch.utils.data import Dataset
 
@@ -72,62 +72,21 @@ class re_dataset_bbox(Dataset):
             if box is None:
                 target_bboxes.append(no_bbox_tensor)
             else:
-                # # is_tensor = isinstance(image, torch.Tensor)
-                # # if is_tensor:
-                # #     to_pil = transforms.ToPILImage()
-                # #     image = to_pil(image)
-                # x, y, w, h = box
-                # assert (x >= 0) and (y >= 0) and (x + w <= W) and (y + h <= H) and (w > 0) and (
-                #         h > 0), "elem invalid"
 
-                # x0, y0 = random.randint(0, math.floor(x)), random.randint(0, math.floor(y))
-                # x1, y1 = random.randint(min(math.ceil(x + w), W), W), random.randint(min(math.ceil(y + h), H),
-                #                                                                     H)  # fix bug: max -> min
-                # w0, h0 = x1 - x0, y1 - y0
-                # assert (x0 >= 0) and (y0 >= 0) and (x0 + w0 <= W) and (y0 + h0 <= H) and (w0 > 0) and (
-                #         h0 > 0), "elem randomcrop, invalid"
-                # # image = image.crop((x0, y0, x0 + w0, y0 + h0))
-
-                # # W, H = image.size
-                # # image = self.transform(image)
-                # # image = test_transform(image)
-                # # axis transform: for crop
-                # # x = x - x0
-                # # y = y - y0
-                # # image = resize(image, [self.image_res, self.image_res], interpolation=Image.BICUBIC)
-
-                # # resize applied
-                # x = self.image_res / W * x
-                # w = self.image_res / W * w
-                # y = self.image_res / H * y
-                # h = self.image_res / H * h
-
-                # center_x = x + 1 / 2 * w
-                # center_y = y + 1 / 2 * h
-
-                # target_bbox = [center_x / self.image_res, center_y / self.image_res,
-                #                             w / self.image_res, h / self.image_res]
                 target_bboxes.append(box)
-        # print(target_bboxes)
-        # print(caption)
+
         image = resize(image, [self.image_res, self.image_res], interpolation=Image.BICUBIC)
         image = self.transform(image)
-        # print(f"This is the image after transform:{image}")
-        # print(image)
+
         target_bboxes = torch.tensor(target_bboxes, dtype=torch.float32)
-        # print('Here is the target_bboxes',target_bboxes)
-        # print('Here is the img_id', self.img_ids[ann['image_id']])
+
         return image, caption, self.img_ids[ann['image_id']], sens, target_bboxes
 
-#注意一下， 主要矛盾产生于target_bboxes idx 和 image是深度 绑定的 而 caption 和 sens 并不是
 
 
-        # else:
-        #     image = self.transform(image)  # test_transform
-        #     return image, caption, ann['ref_id']
 
 class re_eval_dataset(Dataset):
-    def __init__(self, ann_file, transform, image_root, max_words=60):
+    def __init__(self, ann_file, transform, image_root, max_words=50):
         self.ann = json.load(open(ann_file, 'r'))
         self.transform = transform
         self.image_root = image_root

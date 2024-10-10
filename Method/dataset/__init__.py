@@ -4,16 +4,30 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 from PIL import Image
 
-from dataset.re_dataset import re_train_dataset, re_eval_dataset
-from dataset.pretrain_dataset import ImageTextJsonDataset, RegionTextJsonDataset
-from dataset.nlvr_dataset import nlvr_dataset
-from dataset.vqa_dataset import vqa_dataset
-from dataset.grounding_dataset import grounding_dataset, grounding_dataset_bbox
-from dataset.coco_karpathy_dataset import coco_karpathy_train, coco_karpathy_train_scst, coco_karpathy_caption_eval
-from dataset.re_bbox_dataset import re_dataset_bbox
+from dataset.re_bbox_dataset import re_dataset_bbox, re_eval_dataset
 
 from dataset.randaugment import RandomAugment
+#transform 去除了对于图像的水平旋转和镜像
 
+'''
+RandomResizedCrop:此操作首先随机调整图像的大小和纵横比,然后对其进行裁剪。结果图像的大小会是config['image_res']。scale=(0.2, 1.0)表示图像的原始面积与裁剪面积之间的比例范围,这里是0.2到1.0之间。interpolation=Image.BICUBIC表示在缩放图像时使用双三次插值。
+
+RandomHorizontalFlip:以50%的概率对图像进行水平翻转。
+
+RandomAugment:这是一种数据增强方法,但并不是torchvision库中的标准方法,可能是某个特定库或自定义实现的。从其参数可以看出,它将在给定的数据增强方法列表augs中随机选择2种方法,并应用最多7次的随机增强。所列出的增强方法包括:
+
+Identity:保持不变
+AutoContrast:自动调整图像的对比度
+Equalize:使图像的直方图均衡化
+Brightness:调整图像的亮度
+Sharpness:调整图像的锐度
+ShearX、ShearY:对图像进行X轴或Y轴的扭曲
+TranslateX、TranslateY:对图像在X轴或Y轴上进行随机平移
+Rotate 随机旋转图像
+ToTensor 将PIL Image或numpy ndarray的图像数据转换为torch.Tensor 并且调整其范围从[0, 255]到[0.0, 1.0]。
+
+normalize 对图像数据进行归一化。具体的均值和标准差应该在normalize变量中定义 但您没有提供这部分代码。归一化有助于神经网络的训练稳定和加速。
+'''
 def create_dataset(dataset, config, evaluate=False):
     normalize = transforms.Normalize((0.48145466, 0.4578275, 0.40821073), (0.26862954, 0.26130258, 0.27577711))
 

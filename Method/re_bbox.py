@@ -17,7 +17,7 @@ import torch.nn.functional as F
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 
-from models.model_re_bbox import XVLM
+from models.model_re_bbox import Bench
 import logging
 import gc
 
@@ -28,14 +28,6 @@ import utils
 from dataset import create_dataset, create_sampler, create_loader
 from scheduler import create_scheduler
 from optim import create_optimizer
-def freeze_all_except_spatial_head(model):
-    for name, param in model.named_parameters():
-        if name not in ['spatial_head.0.weight', 'spatial_head.0.bias', 
-                        'spatial_head.1.weight', 'spatial_head.1.bias', 
-                        'spatial_head.3.weight', 'spatial_head.3.bias']:
-            param.requires_grad = False
-        else:
-            param.requires_grad = True
 
 
 def train(model, data_loader, optimizer, tokenizer, epoch, device, scheduler, config):
@@ -53,42 +45,29 @@ def train(model, data_loader, optimizer, tokenizer, epoch, device, scheduler, co
     print_freq = 50
     step_size = 100
     for i, (image, text, idx, sens, target_bboxes) in enumerate(metric_logger.log_every(data_loader, print_freq, header)):
-        # print('Note: This part is in the main process!')
-        # print(f'here is the main {idx} image:{image}')
-        # print(f'here is the main {idx} text:{text}')
-        # print(f'Here is the {idx} sens:{sens}')
-        # print(f'Here is the {idx} boxes:{target_bboxes}')
+
         sens = [list(i) for i in zip(*sens)]
-        # print(f'Here is the {idx} new sens:{sens}')
+
         batch_length = idx.size(0)
         image = image.to(device, non_blocking=True)
         idx = idx.to(device, non_blocking=True)
         caption = tokenizer(text, padding='longest', max_length=config['max_tokens'], return_tensors="pt").to(device)
-        # target_bboxes 得是一个tensor ? 普通的None 没有办法存储在里面
-        # text = "aerial view of university:" + text
 
-        # 做一个 text 和 bbox的 tensor 对
+
         pair_text_bbox = []
         count = 0
-        # flag = 0
-        # print(target_bboxes)
-        # print('here is a signal!')
-        # print(target_bboxes[0][0])
-        # print('here is another signal')
-        # print(text)
-        # print(sens)
+
         for i in range(batch_length):
             # spatial = 0
             for j in range(3):
                 if target_bboxes[i][j][0] > 0:
                     target_bbox = target_bboxes[i][j]
-                    # print(target_bbox)
+
                     sen = sens[i][j]
-                    # print('Here is the sen',sen)
-                    # print('Here is the target_bbox',target_bbox)
+
                     sen_token = tokenizer(sen, padding='longest', max_length=config['max_tokens'], return_tensors="pt").to(device)
                     count = count + 1
-                    pair_text_bbox.append([i, sen_token, target_bbox])   #同序号 i 的 sen collect 在一起， 少于2两个就不管了， 让他们互相之间去比较
+                    pair_text_bbox.append([i, sen_token, target_bbox])   
 
                 
 
@@ -106,9 +85,6 @@ def train(model, data_loader, optimizer, tokenizer, epoch, device, scheduler, co
             loss_itc, loss_itm, loss_bb, loss_spatial = outputs
             loss = loss_itc + loss_itm + loss_bb + loss_spatial
         
-        # for name, param in model.named_parameters():
-        #     if param.grad is None:
-        #         print(f'Parameter {name} was not used during forward pass.')
 
         
         optimizer.zero_grad()
@@ -126,165 +102,13 @@ def train(model, data_loader, optimizer, tokenizer, epoch, device, scheduler, co
             loss_spatial = None
         metric_logger.update(lr=optimizer.param_groups[0]["lr"])
 
-    # gather the stats from all processes
+
     metric_logger.synchronize_between_processes()
     print("Averaged stats:", metric_logger.global_avg())     
     return {k: "{:.5f}".format(meter.global_avg) for k, meter in metric_logger.meters.items()}
 
 
-# @torch.no_grad()
-# def evaluation(model, data_loader, tokenizer, device, config):
-#     model = model.half()
-#     model = model.eval()
-    
-#     metric_logger = utils.MetricLogger(delimiter="  ")
-#     header = 'Evaluation:'    
-    
-#     print('Computing features for evaluation...')
-#     start_time = time.time()  
 
-#     texts = data_loader.dataset.text   
-#     num_text = len(texts)
-#     text_bs = config['batch_size_test_text']  # 256
-#     text_feats = []
-#     text_embeds = []  
-#     text_atts = []
-#     for i in range(0, num_text, text_bs):
-#         text = texts[i: min(num_text, i + text_bs)]
-        
-#         # text = "aerial view of university:" + text
-
-#         text_input = tokenizer(text, padding='max_length', truncation=True, max_length=config['max_tokens'],
-#                                return_tensors="pt").to(device)
-#         text_output = model.text_encoder(text_input.input_ids, attention_mask=text_input.attention_mask, mode='text')
-#         text_feat = text_output.last_hidden_state
-#         text_embed = F.normalize(model.text_proj(text_feat[:, 0, :]))
-#         text_embeds.append(text_embed)
-#         text_feats.append(text_feat.cpu())
-#         text_atts.append(text_input.attention_mask)
-
-#     text_embeds = torch.cat(text_embeds, dim=0)
-#     text_feats = torch.cat(text_feats, dim=0)
-#     text_atts = torch.cat(text_atts, dim=0)
-
-#     image_feats = []
-#     image_embeds = []
-#     for image, img_id in data_loader:
-#         image = image.to(torch.float16)
-#         image = image.to(device)
-
-#         image_feat = model.vision_encoder(image)
-#         image_embed = model.vision_proj(image_feat[:, 0, :])
-#         image_embed = F.normalize(image_embed, dim=-1)
-
-#         image_feats.append(image_feat.cpu())
-#         image_embeds.append(image_embed)
-
-#     image_feats = torch.cat(image_feats, dim=0)
-#     image_embeds = torch.cat(image_embeds, dim=0)
-
-#     print("Image embedding over ...")
-    
-#     sims_matrix = image_embeds @ text_embeds.t()
-
-#     del image_embeds
-#     del text_embeds
-
-#     gc.collect()
-#     torch.cuda.empty_cache()
-#     print(f"here is the image length {len(data_loader.dataset.image)}")
-#     print(f"here is the text length {len(texts)}")
-
-#     # score_matrix_i2t = torch.full((len(data_loader.dataset.image), len(texts)), -100.0, dtype=torch.float16).to(device)
-#     score_matrix_i2t = torch.full((len(texts), len(data_loader.dataset.image)), -100.0, dtype=torch.float16).to(device)
-
-#     num_tasks = utils.get_world_size()
-#     rank = utils.get_rank()
-#     step = sims_matrix.size(0) // num_tasks + 1
-#     start = rank * step
-#     end = min(sims_matrix.size(0), start + step)
-
-#     for i, sims in enumerate(metric_logger.log_every(sims_matrix[start:end], 50, header)):
-#         topk_sim, topk_idx = sims.topk(k=config['k_test'], dim=0)
-#         a = start + i
-#         # print('Here is the a', a)
-#         # print(image_feats)
-#         # print(image_feats[start+i].repeat(256,1,1))
-
-#         encoder_output = image_feats[start + i].repeat(config['k_test'], 1, 1).to(device)
-#         encoder_att = torch.ones(encoder_output.size()[:-1], dtype=torch.long).to(device)
-#         output = model.text_encoder(encoder_embeds=text_feats[topk_idx].to(device),
-#                                     attention_mask=text_atts[topk_idx].to(device),
-#                                     encoder_hidden_states=encoder_output,
-#                                     encoder_attention_mask=encoder_att,
-#                                     return_dict=True,
-#                                     mode='fusion'
-#                                     )
-#         score = model.itm_head(output.last_hidden_state[:, 0, :])[:, 1]
-#         # print("score fp16",score)
-#         # fp32_tensor = score.to(torch.float32)
-
-#         # # 找到最大绝对值，用于计算缩放因子
-#         # max_val = torch.max(torch.abs(fp32_tensor))
-
-#         # # 计算缩放因子，确保缩放后的值不超过127
-#         # scale_factor = 127 / max_val
-
-#         # # 缩放张量
-#         # scaled_tensor = torch.round(fp32_tensor * scale_factor)
-
-#         # # 类型转换到Int8
-#         # score = scaled_tensor.type(torch.int8)
-#         # print("score int8 shape,", score.shape)
-#         # print("score int8", score)
-#         # print("score_matrix_i2t,", score_matrix_i2t.shape)
-#         # print('topk_idx,', topk_idx)
-        
-
-#         score_matrix_i2t[start + i, topk_idx] = score
-
-#     #compute the other one 
-#     if args.distributed:
-#         dist.barrier()   
-#         torch.distributed.all_reduce(score_matrix_i2t, op=torch.distributed.ReduceOp.SUM) 
-
-#     score_matrix_i2t_c = score_matrix_i2t.cpu().numpy()
-#     del score_matrix_i2t
-#     torch.cuda.empty_cache()
-#     print("i2t score over ...")
-
-#     sims_matrix = sims_matrix.t()
-#     score_matrix_t2i = torch.full((len(texts), len(data_loader.dataset.image)), -100.0, dtype=torch.float16).to(device)
-    
-#     step = sims_matrix.size(0)//num_tasks + 1
-#     start = rank*step
-#     end = min(sims_matrix.size(0), start + step)
-
-#     for i, sims in enumerate(metric_logger.log_every(sims_matrix[start:end], 50, header)):
-#         topk_sim, topk_idx = sims.topk(k=config['k_test'], dim=0)
-#         encoder_output = image_feats[topk_idx].to(device)
-#         encoder_att = torch.ones(encoder_output.size()[:-1], dtype=torch.long).to(device)
-#         output = model.text_encoder(encoder_embeds=text_feats[start + i].repeat(config['k_test'], 1, 1),
-#                                     attention_mask=text_atts[start + i].repeat(config['k_test'], 1),
-#                                     encoder_hidden_states=encoder_output,
-#                                     encoder_attention_mask=encoder_att,
-#                                     return_dict=True,
-#                                     mode='fusion'
-#                                     )
-#         score = model.itm_head(output.last_hidden_state[:, 0, :])[:, 1]
-#         score = score.to(torch.float16)
-#         score_matrix_t2i[start + i, topk_idx] = score
-
-#     if args.distributed:
-#         dist.barrier()   
-
-#         torch.distributed.all_reduce(score_matrix_t2i, op=torch.distributed.ReduceOp.SUM)        
-        
-#     total_time = time.time() - start_time
-#     total_time_str = str(datetime.timedelta(seconds=int(total_time)))
-#     print('Evaluation time {}'.format(total_time_str)) 
-
-#     return score_matrix_i2t_c, score_matrix_t2i.cpu().numpy()
 
 @torch.no_grad()
 def evaluation(model, data_loader, tokenizer, device, config):
@@ -487,7 +311,7 @@ def main(args, config):
     cudnn.benchmark = True
 
     print("Creating model", flush=True)
-    model = XVLM(config=config)
+    model = Bench(config=config)
     model.load_pretrained(args.checkpoint, config, is_eval=args.evaluate)
     if args.evaluate:
         model = model.half()   #每次evaluate 要开
@@ -573,37 +397,21 @@ def main(args, config):
             print(train_loader)
             train_stats = train(model, train_loader, optimizer, tokenizer, epoch, device, lr_scheduler, config)
 
-            # score_val_i2t, score_val_t2i, = evaluation(model_without_ddp, val_loader, tokenizer, device, config)
-            # score_test_i2t, score_test_t2i = evaluation(model_without_ddp, test_loader, tokenizer, device, config)
 
             if utils.is_main_process():
-                # val_result = itm_eval(score_val_i2t, score_val_t2i, val_loader.dataset.txt2img, val_loader.dataset.img2txt, val_loader.dataset.img2building)
-                # print(val_result)
-                # test_result = itm_eval(score_test_i2t, score_test_t2i, test_loader.dataset.txt2img, test_loader.dataset.img2txt, test_loader.dataset.img2building)
-                # print(test_result)
+
 
                 log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
-                            #  **{f'val_{k}': v for k, v in val_result.items()},
-                            #  **{f'test_{k}': v for k, v in test_result.items()},
+
                              'epoch': epoch}
 
                 with open(os.path.join(args.output_dir, "log.txt"), "a") as f:
                     f.write(json.dumps(log_stats) + "\n")
 
-                # if test_result['r_mean'] > best:
-                #     save_obj = {
-                #         'model': model_without_ddp.state_dict(),
-                #         # 'optimizer': optimizer.state_dict(),
-                #         # 'lr_scheduler': lr_scheduler.state_dict(),
-                #         'config': config,
-                #         # 'epoch': epoch,
-                #     }
-                #     torch.save(save_obj, os.path.join(args.output_dir, 'checkpoint_best.pth'))
-                #     best = test_result['r_mean']
-                #     best_epoch = epoch
+
 
                 if epoch <= config['schedular']['epochs'] - 1:
-                    # if (epoch+1)%2 ==0:
+
                     save_obj = {
                         'model': model_without_ddp.state_dict(),
                         'optimizer': optimizer.state_dict(),

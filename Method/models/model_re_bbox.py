@@ -27,12 +27,12 @@ def compute_rela(bbox1, bbox2):
 
     return torch.tensor([horizontal, vertical])
 
-class XVLM(XVLMBase):
+class Bench(XVLMBase):
     def __init__(self, config):
         super().__init__(config, load_vision_params=False, load_text_params=False,
                          use_contrastive_loss=True, use_matching_loss=True, use_mlm_loss=False, use_bbox_loss=True, use_spatial_loss=True)
         
-        self.bbox_collector = self.BBoxCollector(self)   #注意一下这个玩意儿
+        self.bbox_collector = self.BBoxCollector(self)   
 
         self.num_attention_heads = self.text_encoder.config.num_attention_heads
         self.init_params = []
@@ -45,15 +45,7 @@ class XVLM(XVLMBase):
         print("unexpected_keys: ", msg.unexpected_keys)
 
     def forward(self, image, text_ids, text_atts, idx=None, pair=None):
-        # print("Note: This part is in the model process!")
-        # print(f"Here is the model {idx} image: {image}")
-        # print(f'Here is the model {idx} text_ids:{text_ids}')
-        # print(f'Here is the model {idx} text_atts:{text_atts}')
-        # print(f'Here is the model {idx} pair:{pair}')
         image_embeds, image_atts = self.get_vision_embeds(image)
-        # print(image_embeds.shape)
-        # print('Here is the image_embeding size')
-        # print(image_embeds.size(0))
         text_embeds = self.get_text_embeds(text_ids, text_atts)
         # output_coord & target_bbox: 64, 4
         image_feat, text_feat = self.get_features(image_embeds, text_embeds)
@@ -64,13 +56,13 @@ class XVLM(XVLMBase):
         n = len(pair)
 
         if n == 0:
-            # loss_bb = -100
+
             return loss_itc, loss_itm
         else:
             loss_count = 0
             total_spatial_loss = 0
             loss_bb = 0
-            size = 12 # 手动调整
+            size = 12 
             for i in range(n):
                 num = pair[i][0]
 
@@ -105,7 +97,7 @@ class XVLM(XVLMBase):
                 spatial_loss = self.bbox_collector.update_bbox(bbox_info)
 
 
-                if spatial_loss is not None:  # 如果计算出了空间关系损失
+                if spatial_loss is not None: 
                     total_spatial_loss += spatial_loss
                     loss_count += 1
 
@@ -113,7 +105,7 @@ class XVLM(XVLMBase):
 
             self.bbox_collector.collect_bbox = []
             self.bbox_collector.current_num = None
-            # return loss_itc, loss_itm, loss_bb
+
 
             if loss_count > 0:
                 loss_spatial = total_spatial_loss / loss_count
@@ -122,8 +114,6 @@ class XVLM(XVLMBase):
                 return loss_itc, loss_itm, loss_bb
         
     class BBoxCollector:
-        # ... [与之前的BBoxCollector定义相同] ...
-        # 记得在calculate_loss()返回spatial_loss时，你可能需要进行相应的调整以确保其正确返回。
         def __init__(self,parent):
             self.collect_bbox = []
             self.current_num = None
@@ -132,19 +122,19 @@ class XVLM(XVLMBase):
         def update_bbox(self, bbox_info):
             new_num = bbox_info['num']
 
-            # 情况1
+
             if not self.collect_bbox:
                 self.collect_bbox.append(bbox_info)
                 self.current_num = new_num
                 return
 
-            # 情况2
+
             if len(self.collect_bbox) == 1:
                 if new_num == self.current_num:
                     self.collect_bbox.append(bbox_info)
                     return
                 else:
-                    # 排出旧的bbox
+
                     self.collect_bbox = [bbox_info]
                     self.current_num = new_num
                     return
@@ -153,12 +143,12 @@ class XVLM(XVLMBase):
                 if new_num == self.current_num:
                     self.collect_bbox.append(bbox_info)
                     loss = self.calculate_loss(self.collect_bbox)
-                    self.collect_bbox = []  # 清空
+                    self.collect_bbox = []
                     return loss
 
                 else:
                     loss = self.calculate_loss(self.collect_bbox)
-                    self.collect_bbox = []  # 清空
+                    self.collect_bbox = []
                     self.collect_bbox.append(bbox_info)
                     self.current_num = new_num
                     return loss
@@ -169,7 +159,7 @@ class XVLM(XVLMBase):
                 target_bbox_A = pair[0]['bbox']
                 target_bbox_B = pair[1]['bbox']
                 
-                feature_map = pair[0]['image_feature_map']  # 仅使用第一个bbox的feature map，您可能需要进行相应的调整
+                feature_map = pair[0]['image_feature_map'] 
                 
                 target_ids = compute_rela(target_bbox_A, target_bbox_B)
 

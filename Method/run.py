@@ -234,6 +234,100 @@ def run_re_bbox(args):
 def run(args):
     if args.task not in ['pretrain_4m_base']:
         assert hexists(args.checkpoint) or hexists(args.load_ckpt_from)
+
+    if args.task == 'pretrain_4m_base':
+        args.config = 'configs/Pretrain_XVLM_base_4m.yaml'
+        run_pretrain(args)
+
+    elif args.task == 'itr_coco':
+        # assert os.path.exists("images/coco")
+        args.config = 'configs/Retrieval_coco.yaml'
+        run_retrieval(args)
+
+    elif args.task == 'itr_flickr':
+        assert os.path.exists("images/flickr30k-images")
+        args.config = 'configs/Retrieval_flickr.yaml'
+        run_retrieval(args)
+
+    elif args.task == 'vqa':
+        assert os.path.exists("images/coco") and os.path.exists("images/visualgenome")
+        run_vqa(args)
+
+    elif args.task == 'vqa_480':
+        assert os.path.exists("images/coco") and os.path.exists("images/visualgenome")
+        # if use 480x480 (the accuracy will increase 0.5%):
+        args.config = "configs/VQA_480.yaml"
+        run_vqa(args)
+
+    elif args.task == 'nlvr':
+        assert os.path.exists("images/nlvr2")
+        run_pretrain_nlvr(args)
+
+    elif args.task == 'refcoco_weakly':
+        assert os.path.exists("images/coco")
+        args.config = './configs/Grounding.yaml'
+        run_refcoco(args, block_num=9)  # 9 for X-VLM base
+
+    elif args.task == 'refcoco_block_num_search':  # for refcoco_weakly
+        assert os.path.exists("images/coco")
+        # block_num: use which layer of the cross-modal encoder for calculation
+        # it is a critical hyper-param for refcoco without bbox annotations
+        for num in [8, 9, 10, 7]:
+            print(f"### block_num {num}")
+            args.config = './configs/Grounding.yaml'
+            run_refcoco(args, block_num=num, epochs=1)
+
+    elif args.task == 'refcoco_bbox':
+        assert os.path.exists("images/coco")
+        run_pretrain_refcoco_bbox(args)
+
+    elif args.task.startswith('coco_capt_domain'):
+        domain_ckpt = run_pretrain_captioning(args)
+
+        # run fine-tune, reset args
+        args.checkpoint = domain_ckpt
+        if hexists(args.output_dir): args.output_dir = os.path.join(args.output_dir, 'coco_capt_ft')
+        args.config = f'./configs/Captioning.yaml'
+        run_coco_captioning(args, load_capt_pretrain=True)
+
+    elif args.task == 'coco_captioning':
+        run_coco_captioning(args, load_capt_pretrain=True)
+
+    elif args.task == 'coco_captioning_scst':  # load checkpoint of 'coco_captioning' results
+        args.config = f'./configs/Captioning_scst.yaml'
+        run_coco_captioning(args, scst=True)
+
+    elif args.task == 'eval_vlue_itr':
+        assert os.path.exists("images/marvl")
+
+        args.config = f"configs/vlue-base-test/Retrieval.yaml"
+        args.evaluate = True
+        run_retrieval(args)
+
+    elif args.task == 'eval_vlue_vqa':
+        assert os.path.exists("images/marvl")
+        # args.config = f"configs/vlue-base-test/VQA.yaml"
+        args.config = f"configs/vlue-base-test/VQA_480.yaml"
+        args.evaluate = True
+        run_vqa(args)
+
+    elif args.task == 'eval_vlue_nlvr':
+        assert os.path.exists("images/marvl")
+        args.evaluate = True
+        args.config = f"configs/vlue-base-test/NLVR.yaml"
+        run_nlvr2(args)
+
+    elif args.task == 'eval_vlue_refcoco':
+        assert os.path.exists("images/marvl")
+        args.evaluate = True
+        args.config = f"configs/vlue-base-test/Grounding_bbox.yaml"
+        run_refcoco(args, use_bbox=True)
+
+    elif args.task == 'eval_vlue_refcoco_weakly':
+        assert os.path.exists("images/marvl")
+        args.evaluate = True
+        args.config = f"configs/vlue-base-test/Grounding_weakly.yaml"
+        run_refcoco(args)
     
     elif args.task == 're_bbox':
         args.config = 'configs/re_bbox.yaml'

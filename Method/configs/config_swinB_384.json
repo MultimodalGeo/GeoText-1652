@@ -1,5 +1,5 @@
 {
-  "ckpt": "/dataset/vmengchu/X-VLM/download/data/swin_base_patch4_window7_224_22k.pth",
+  "ckpt": "/root/GeoText-1652/GeoText1652_model/swin_base_patch4_window7_224_22k.pth",
   "vision_width": 1024,
   "image_res": 384,
   "window_size": 12,

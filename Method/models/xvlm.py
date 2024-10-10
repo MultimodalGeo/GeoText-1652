@@ -28,7 +28,7 @@ from utils import read_json
 import torch
 import torch.nn as nn
 
-
+# torch.manual_seed(42)   #添加随机数种子
 class Mapper(nn.Module):
     torch.manual_seed(42) 
     def __init__(self):
@@ -38,7 +38,11 @@ class Mapper(nn.Module):
     def forward(self, x):
         x = self.fc(x)
         return x.mean(dim=1)
-
+# # 使用Mapper
+# model_map = Mapper()
+# 得到输出
+# # 打印输出tensor的形状，确保它是(1, 768)
+# print(output_tensor.shape)  # 输出: torch.Size([1, 768])
 
 
 
@@ -297,7 +301,7 @@ def load_pretrained(ckpt_rpath, config, is_eval=False, load_text=False):
     return state_dict
 
 
-class RebboxBase(nn.Module):
+class XVLMBase(nn.Module):
     def __init__(self, config=None, load_vision_params=False, load_text_params=False,
                  use_contrastive_loss=False, use_matching_loss=False, use_mlm_loss=False, use_bbox_loss=False, use_spatial_loss=False,
                  config_text=None):
@@ -582,32 +586,41 @@ class RebboxBase(nn.Module):
         return loss_bbox.sum() / num_boxes, loss_giou.sum() / num_boxes
         
 
+    # def bbox_feature_map(self, text_input, text_embeds, roi, feature_map):
     def bbox_feature_map(self, roi, feature_map):
         output = roi_pooling_with_relative_coordinates(feature_map, roi, (12, 12)).view(1, 144, 1024)        #我们的  size是 12 *12
-
+        # print(f'here is the output {output}')
+        # spatial_cls = self.get_cross_embeds(output, torch.ones(output.shape[:2]).to(output.device),text_embeds=text_embeds, text_atts=text_input.attention_mask)[:, 0, :]  Old method with all roi and text
+        # model_map = self.model_map.to(output.device)
+        # print(model_map)
         spatial_cls = self.model_map(output)
 
         return spatial_cls
 
     def whole_feature(self, main_feature, adjacent_feature):
-
+        # 合并两个特征
         combined = torch.cat((main_feature, adjacent_feature), dim=1)
-
+        # 定义固定权重
+        # Here is the to 
         weights = torch.cat((torch.full((1, 768), 0.75), torch.full((1, 768), 0.25)), dim=1).to(combined.device)
 
+        # 对合并的特征应用固定权重
         weighted = combined * weights
 
+        # 使用平均权重压缩
         compressed = weighted[:, :768] + weighted[:, 768:]
 
         return compressed
 
     
-
+    # def spatial_relation_predictor(self, textA_input, textA_embeds, textB_input, textB_embeds, textA_bbox, textB_bbox, image_feature_map):
     def spatial_relation_predictor(self, textA_bbox, textB_bbox, image_feature_map):
 
+        # Here is the to 
         textA_bbox_ = torch.cat((torch.tensor([0]).to(device = textA_bbox.device),textA_bbox)).unsqueeze(0)
         textB_bbox_ = torch.cat((torch.tensor([0]).to(device = textB_bbox.device),textB_bbox)).unsqueeze(0)
-
+        # spa = self.bbox_feature_map(textA_input, textA_embeds, textA_bbox_, image_feature_map)
+        # spa_ = self.bbox_feature_map(textB_input, textB_embeds, textB_bbox_, image_feature_map)
         spa = self.bbox_feature_map(textA_bbox_, image_feature_map)
         spa_ = self.bbox_feature_map(textB_bbox_, image_feature_map)
         output_cls = self.whole_feature(spa,spa_)
@@ -616,11 +629,32 @@ class RebboxBase(nn.Module):
         return output_id
 
 
- 
+    # def get_spatial_relation_loss(self, textA_input, textA_embeds, textB_input, textB_embeds, textA_bbox, textB_bbox, image_feature_map, target_ids):
     def get_spatial_relation_loss(self, textA_bbox, textB_bbox, image_feature_map, target_ids):
-
+    #     """
+    #     Get the loss for predicting spatial relation words in a masked sentence.
+    #     Args:
+    #         textA_embeds textB_embeds: the encoding of the spatial relation sentences
+    #         target_ids: the ids of the target spatial relation words
+    #     Returns: the spatial relation loss
+    #     """
+    #     # Use the model to predict the ids of the masked position relation words
         pred_ids = self.spatial_relation_predictor(textA_bbox, textB_bbox, image_feature_map)
+
+        # pred_ids = self.spatial_relation_predictor(textA_input, textA_embeds, textB_input, textB_embeds, textA_bbox, textB_bbox, image_feature_map)
+        # print('Here is the pred_ids shape', pred_ids.shape)
+        # print('Here is the pred_ids',pred_ids)
+        # print('Here is the target_ids shape', target_ids.shape)
+
         target_ids = target_ids.unsqueeze(0).to(device=pred_ids.device)
+        # pred_ids = pred_ids.squeeze().to(device=pred_ids.device)
+
+        # print('Here is the pred_ids_ shape', pred_ids.shape)
+        # print('Here is the pred_ids_',pred_ids)
+        # print('Here is the target_ids_ shape', target_ids.shape)
+
+        # assert pred_ids.shape==target_ids.shape
+        # Compute the loss between the predicted ids and the target ids
 
         horizontal_logits = pred_ids[:, :3]
         vertical_logits = pred_ids[:, 3:]

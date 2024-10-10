@@ -1,23 +1,23 @@
-train_file:  ["/root/GeoText-1652/GeoText1652_Dataset/train.json"]  
-test_file: "/root/GeoText-1652/GeoText1652_Dataset/test_951_version.json" 
-image_root: '/root/GeoText-1652/GeoText1652_Dataset/images'
+train_file: [/root/GeoText-1652/GeoText1652_Dataset/train.json]
+test_file: /root/GeoText-1652/GeoText1652_Dataset/test_951_version.json
+image_root: /root/GeoText-1652/GeoText1652_Dataset/images
 
 ## Vision Encoder
-vision_config: 'configs/config_swinB_384.json'
+vision_config: configs/config_swinB_384.json
 
-use_clip_vit: False
+use_clip_vit: false
 #image_res: 384
 #patch_size: 16
 
-use_swin: True
+use_swin: true
 image_res: 384
 patch_size: 32
 
 
 ## Text Encoder
-use_roberta: False
-text_config: 'configs/config_bert.json'  # ['configs/config_bert.json', 'configs/config_roberta.json']
-text_encoder: '/root/GeoText-1652/GeoText1652_model/bert'  # ['data/bert-base-uncased', 'data/roberta-base']
+use_roberta: false
+text_config: configs/config_bert.json    # ['configs/config_bert.json', 'configs/config_roberta.json']
+text_encoder: /root/GeoText-1652/GeoText1652_model/bert    # ['data/bert-base-uncased', 'data/roberta-base']
 
 
 

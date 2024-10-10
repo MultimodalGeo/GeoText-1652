@@ -1,0 +1,33 @@
+accelerator: {CLIP_GRAD_NORM: 1.0, FP16_LOSS_SCALE: dynamic, FP16_OPT_LEVEL: O1, GRAD_ACCUMULATE_STEPS: 1,
+  RNG_SEED: 42, SYNCBN: false}
+calc_image_bbox_loss: false
+ckpt_frequent: 5
+ckpt_frequent_step: 50000
+embed_dim: 256
+image_res: 224
+images: {batch_size: 128, caption_key: caption, image_key: binary, is_image_rpath: false,
+  num_workers: 4, tokenized: false}
+load_bertL_by_sep: false
+mask_prob: 0.25
+mask_whole_word: true
+max_masks: 8
+max_tokens: 40
+max_words: 40
+optimizer: {lr: 0.0001, lr_mult: 2, opt: adamW, weight_decay: 0.01}
+patch_size: 32
+regions: {batch_size: 128, caption_key: caption, image_key: binary, is_image_rpath: false,
+  iter_perc: 0.5, max_images: 48, max_regions: 5, min_perc_in_image: 0.5, num_workers: 4,
+  tokenized: false}
+schedular: {epochs: 41, lr: 0.0001, num_warmup_steps: 2500, sched: linear}
+skipgram_prb: 0.2
+skipgram_size: 3
+temp: 0.07
+text_config: configs/config_bert.json
+text_encoder: /storage_fast/mchu/blip2/VLM/X-VLM/data/bert
+train_dataset_size: 5114489
+train_file: [hdfs://path/to/coco, hdfs://path/to/vg, hdfs://path/to/sbu, hdfs://path/to/cc3m]
+train_file_regions: [hdfs://path/to/coco_objs, hdfs://path/to/vg_objs, hdfs://path/to/vg_regions]
+use_clip_vit: false
+use_roberta: false
+use_swin: true
+vision_config: configs/config_swinB_224.json
