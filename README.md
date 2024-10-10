@@ -2,7 +2,7 @@
 
 <div align="center">
 
-Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
+**Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹**
 
 ¹ School of Computing, National University of Singapore, Singapore  
 ² FST and ICI, University of Macau, China  
