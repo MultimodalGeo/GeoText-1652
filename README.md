@@ -1,3 +1,124 @@
+
+
+
+# GeoText-1652: Natural Language-Guided Drones Benchmark
+
+<div align="center">
+
+**Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching**
+
+[![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://arxiv.org/pdf/your_paper_link.pdf)
+[![Project Page](https://img.shields.io/badge/Project-Website-blue)](https://multimodalgeo.github.io/GeoText/)
+[![Dataset](https://img.shields.io/badge/Dataset-Download-green)](https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset)
+[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-orange)](https://huggingface.co/truemanv5666/GeoText1652_model)
+
+</div>
+
+## 📚 About GeoText-1652
+
+GeoText-1652 is a groundbreaking benchmark dataset for ECCV 2024, focusing on natural language-guided drone navigation with spatial relation matching. This dataset bridges the gap between natural language processing, computer vision, and robotics, paving the way for more intuitive and flexible drone control systems.
+
+### 🌟 Key Features
+
+- Multi-platform imagery: drone, satellite, and ground cameras
+- Covers multiple universities with no overlap between train and test sets
+- Rich annotations including global descriptions, bounding boxes, and spatial relations
+
+## 📊 Dataset Statistics
+
+| Split                    | #Imgs  | #Global Descriptions | #Bbox-Texts | #Classes | #Universities |
+|--------------------------|--------|----------------------|-------------|----------|---------------|
+| **Training (Drone)**     | 37,854 | 113,562              | 113,367     | 701      | 33            |
+| **Training (Satellite)** | 701    | 2,103                | 1,709       | 701      | 33            |
+| **Training (Ground)**    | 11,663 | 34,989               | 14,761      | 701      | 33            |
+| **Test (Drone)**         | 51,355 | 154,065              | 140,179     | 951      | 39            |
+| **Test (Satellite)**     | 951    | 2,853                | 2,006       | 951      | 39            |
+| **Test (Ground)**        | 2,921  | 8,763                | 4,023       | 793      | 39            |
+
+## 🛠️ Setup and Usage
+
+### Prerequisites
+
+- Git
+- Git Large File Storage (LFS)
+- Conda
+
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/MultimodalGeo/GeoText-1652.git
+
+# Set up environment
+conda create -n gt python=3.8
+conda activate gt
+pip install -r requirements.txt
+
+# Download dataset and model
+git clone https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset
+git clone https://huggingface.co/truemanv5666/GeoText1652_model
+
+# Run evaluation
+python3 run.py --task "re_bbox" --dist "l4" --evaluate --output_dir "output/eva" --checkpoint "/path/to/checkpoint.pth"
+
+# Run training
+nohup python3 run.py --task "re_bbox" --dist "l4" --output_dir "output/train" --checkpoint "/path/to/checkpoint.pth" &
+```
+
+For detailed setup instructions, please refer to our [Setup Guide](setup_guide.md).
+
+## 👥 Authors
+
+- Meng Chu¹ (e0998106@u.nus.edu)
+- Zhedong Zheng²* (zhedongzheng@um.edu.mo)
+- Wei Ji¹ (jiwei@nus.edu.sg)
+- Tingyu Wang³ (tingyu.wang@hdu.edu.cn)
+- Tat-Seng Chua¹ (dcscts@nus.edu.sg)
+
+¹ School of Computing, National University of Singapore, Singapore  
+² FST and ICI, University of Macau, China  
+³ School of Communication Engineering, Hangzhou Dianzi University, China
+
+## 📄 Citation
+
+If you find GeoText-1652 useful for your work, please cite:
+
+```bibtex
+@inproceedings{chu2024towards, 
+  title={Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching}, 
+  author={Chu, Meng and Zheng, Zhedong and Ji, Wei and Wang, Tingyu and Chua, Tat-Seng}, 
+  booktitle={ECCV}, 
+  year={2024} 
+}
+```
+
+## 🙏 Acknowledgements
+
+We would like to express our gratitude to the creators of [X-VLM](https://github.com/zengyan-97/X-VLM) for their excellent work, which has significantly contributed to this project.
+
+## 📬 Contact
+
+For any questions or feedback, please open an issue in this repository or contact the authors directly.
+
+---
+
+<div align="center">
+  Made with ❤️ by the GeoText-1652 Team
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 # GeoText-1652
 An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching
 
