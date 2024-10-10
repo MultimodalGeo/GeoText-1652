@@ -1,16 +1,15 @@
 # GeoText-1652
 An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching
 
-- [x] Part I: Dataset
-- [x] Part II: Annotation Pipeline
-- [x] Part III: Data Feature
-- [X] Part IV: Train and Test
-- [ ] Part V: Visual Grounding
 
 
-### Dataset
+
 ## Download Link
 You could directly download the dataset from the google drive public link: https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing. 
+
+You can also see it in our HuggingFace Hub, 
+for the dataset:  https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset           
+for the model:   https://huggingface.co/truemanv5666/GeoText1652_model
 
 ## Statistics of GeoText-1652
 
