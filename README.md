@@ -126,7 +126,159 @@ These annotations are crucial for tasks that require precise spatial localizatio
 
 
 
+# GeoText-1652 Setup and Usage Guide
 
+This guide will walk you through the process of setting up the GeoText-1652 project environment.
+
+## Prerequisites
+
+- Git
+- Git Large File Storage (LFS)
+- Conda (we'll install Miniconda in the steps below)
+- Internet connection for downloading necessary files
+
+## Installation Steps
+
+### 1. Clone the Repository
+
+First, clone the GeoText-1652 repository:
+
+```bash
+git clone https://github.com/MultimodalGeo/GeoText-1652.git
+```
+
+### 2. Install Miniconda
+
+Download and install Miniconda:
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sh Miniconda3-latest-Linux-x86_64.sh
+```
+
+Follow the prompts to complete the Miniconda installation.
+
+### 3. Create Conda Environment
+
+Create a new conda environment for the project:
+
+```bash
+conda create -n xvlm python=3.8
+```
+
+Activate the environment:
+
+```bash
+conda activate xvlm
+```
+
+### 4. Install Requirements
+
+Navigate to the project directory and install the required packages:
+
+```bash
+cd GeoText-1652
+pip install -r requirements.txt
+```
+
+### 5. Install and Configure Git LFS
+
+Install Git LFS:
+
+```bash
+apt install git-lfs
+```
+
+Set up Git LFS:
+
+```bash
+git lfs install
+```
+
+### 6. Download Dataset and Model
+
+Clone the dataset and model repositories from Hugging Face:
+
+```bash
+git clone https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset
+git clone https://huggingface.co/truemanv5666/GeoText1652_model
+```
+
+### 7. Extract Dataset Images
+
+Navigate to the dataset images directory and extract the compressed files:
+
+```bash
+cd GeoText1652_Dataset/images
+find . -type f -name "*.tar.gz" -print0 | xargs -0 -I {} bash -c 'tar -xzf "{}" -C "$(dirname "{}")" && rm "{}"'
+```
+
+This command will extract all `.tar.gz` files in the directory and remove the compressed files afterward.
+
+### 8. Update Configuration File
+
+You need to update the `reboot.yaml` configuration file with the correct paths. Open the file in a text editor and modify the following lines:
+
+```yaml
+train_file: ["/root/GeoText-1652/GeoText1652_Dataset/train.json"]
+test_file: "/root/GeoText-1652/GeoText1652_Dataset/test_951_version.json"
+image_root: '/root/GeoText-1652/GeoText1652_Dataset/images'
+text_encoder: '/root/GeoText-1652/GeoText1652_model/bert'
+```
+
+Make sure these paths match your actual directory structure. If you cloned the repositories to a different location, adjust the paths accordingly.
+
+### 9. Update SwinB Configuration
+
+You also need to update the SwinB configuration file. Navigate to the `method/configs` directory and open the `config_swinB_384.json` file. Update the `ckpt` path as follows:
+
+```json
+"ckpt": "/root/GeoText-1652/GeoText1652_model/swin_base_patch4_window7_224_22k.pth"
+```
+
+Again, make sure this path matches your actual directory structure. If you cloned the model repository to a different location, adjust the path accordingly.
+
+## Running the Model
+
+After setting up your environment and configuring the files, you can run the model for evaluation or training. Navigate to the `method` directory to run these commands:
+
+```bash
+cd method
+```
+
+### Evaluation
+
+To evaluate the model, use the following command:
+
+```bash
+python3 run.py --task "re_bbox" --dist "l4" --evaluate --output_dir "output/eva" --checkpoint "/root/GeoText-1652/GeoText1652_model/geotext_official_checkpoint.pth"
+```
+
+### Training
+
+To train the model, use the following command:
+
+```bash
+nohup python3 run.py --task "re_bbox" --dist "l4" --output_dir "output/train" --checkpoint "/root/GeoText-1652/GeoText1652_model/geotext_official_checkpoint.pth" &
+```
+
+Note: The `nohup` command is used to run the training process in the background, allowing it to continue even if you close the terminal session.
+
+### Adjusting GPU Settings
+
+You can adjust the GPU settings in the `run.py` file if needed. Make sure to modify these settings according to your hardware capabilities and requirements.
+
+## Next Steps
+
+With these steps completed, you should be able to run both evaluation and training tasks for GeoText-1652. Remember to monitor your GPU usage and adjust settings as necessary for optimal performance.
+
+## Troubleshooting
+
+If you encounter any issues during setup or execution, please check the project's issue tracker on GitHub or reach out to the maintainers for support.
+
+## Acknowledgements
+
+We would like to express our gratitude to the creators of X-VLM (https://github.com/zengyan-97/X-VLM) for their excellent work, which has significantly contributed to this project.
 
 
 
