@@ -2,8 +2,6 @@
 
 <div align="center">
 
-**Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching**
-
 Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 
 ¹ School of Computing, National University of Singapore, Singapore  
@@ -114,13 +112,6 @@ For any questions or feedback, please open an issue in this repository or contac
 
 
 
-
-# GeoText-1652
-An offical repo for ECCV 2024 Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching
-
-
-
-
 ## Download Link
 You could directly download the dataset from the google drive public link: https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing. 
 
@@ -141,8 +132,6 @@ Training and test sets all include the image, global description, bbox-text pair
 | **Test (Satellite)**     | 951    | 2,853                | 2,006       | 951      | 39            |
 | **Test (Ground)**        | 2,921  | 8,763                | 4,023       | 793      | 39            |
 
-
-The dataset 
 ## Dataset Structure
 
 This repository includes training and testing data organized as follows:
