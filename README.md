@@ -1,5 +1,4 @@
-# 【ECCV2024】GeoText-1652: 
-# Natural Language-Guided Drones Benchmark
+# 【ECCV2024】Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching
 
 <div align="center">
 
