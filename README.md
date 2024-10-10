@@ -1,11 +1,14 @@
-
-
-
 # GeoText-1652: Natural Language-Guided Drones Benchmark
 
 <div align="center">
 
 **Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching**
+
+Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
+
+¹ School of Computing, National University of Singapore, Singapore  
+² FST and ICI, University of Macau, China  
+³ School of Communication Engineering, Hangzhou Dianzi University, China
 
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://arxiv.org/pdf/your_paper_link.pdf)
 [![Project Page](https://img.shields.io/badge/Project-Website-blue)](https://multimodalgeo.github.io/GeoText/)
@@ -68,18 +71,6 @@ nohup python3 run.py --task "re_bbox" --dist "l4" --output_dir "output/train" --
 
 For detailed setup instructions, please refer to our [Setup Guide](setup_guide.md).
 
-## 👥 Authors
-
-- Meng Chu¹ (e0998106@u.nus.edu)
-- Zhedong Zheng²* (zhedongzheng@um.edu.mo)
-- Wei Ji¹ (jiwei@nus.edu.sg)
-- Tingyu Wang³ (tingyu.wang@hdu.edu.cn)
-- Tat-Seng Chua¹ (dcscts@nus.edu.sg)
-
-¹ School of Computing, National University of Singapore, Singapore  
-² FST and ICI, University of Macau, China  
-³ School of Communication Engineering, Hangzhou Dianzi University, China
-
 ## 📄 Citation
 
 If you find GeoText-1652 useful for your work, please cite:
@@ -99,14 +90,19 @@ We would like to express our gratitude to the creators of [X-VLM](https://github
 
 ## 📬 Contact
 
-For any questions or feedback, please open an issue in this repository or contact the authors directly.
+For any questions or feedback, please open an issue in this repository or contact the authors directly:
+
+- Meng Chu (e0998106@u.nus.edu)
+- Zhedong Zheng (zhedongzheng@um.edu.mo)
+- Wei Ji (jiwei@nus.edu.sg)
+- Tingyu Wang (tingyu.wang@hdu.edu.cn)
+- Tat-Seng Chua (dcscts@nus.edu.sg)
 
 ---
 
 <div align="center">
   Made with ❤️ by the GeoText-1652 Team
 </div>
-
 
 
 
