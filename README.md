@@ -10,12 +10,16 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 ² FST and ICI, University of Macau, China  
 ³ School of Communication Engineering, Hangzhou Dianzi University, China
 
+
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://arxiv.org/pdf/2311.12751)
-[![Poster](https://img.shields.io/badge/Poster-PDF-97CA00)](https://drive.google.com/file/d/1QtLl3vtwUl-_rC_Ma48Gnaw-bHCMB7Qw/view?usp=share_link)
-[![Project Page](https://img.shields.io/badge/Project-Website-blue)](https://multimodalgeo.github.io/GeoText/)
-[![Dataset](https://img.shields.io/badge/Dataset-Download-green)](https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing)
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-blue)](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset)
-[![HuggingFace](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-orange)](https://huggingface.co/truemanv5666/GeoText1652_model)
+[![Poster](https://img.shields.io/badge/Poster-PDF-brightgreen)](https://drive.google.com/file/d/1QtLl3vtwUl-_rC_Ma48Gnaw-bHCMB7Qw/view?usp=share_link)
+[![Project](https://img.shields.io/badge/Project-Website-blue)](https://multimodalgeo.github.io/GeoText/)
+[![Dataset](https://img.shields.io/badge/Dataset-Download-yellow)](https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-orange)](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-blueviolet)](https://huggingface.co/truemanv5666/GeoText1652_model)
+
+
+
 
 </div>
 
