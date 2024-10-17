@@ -167,7 +167,7 @@ Example entry in `train.json`:
    ```
 
 8. Update configuration files:
-   - Update `rebbox.yaml` with correct paths
+   - Update `re_bbox.yaml` with correct paths
    - Update `method/configs/config_swinB_384.json` with correct `ckpt` path
 
 ### Running the Model
