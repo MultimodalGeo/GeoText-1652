@@ -185,18 +185,9 @@ python3 run.py --task "re_bbox" --dist "l4" --evaluate --output_dir "output/eva"
 
 Evaluation paths:
 - Full test (951 cases): GeoText1652_Dataset/test_951_version.json
-- 24GB GPU version (1/5 size of the Full): GeoText1652_Dataset/test_24G_version.json
+- 24GB GPU version (1/5 size of the Full): Coming Soon
 
 
-Full evaluation results are in the paper.
-
-24GB Version Results on Two 3090Ti:
-```
-|   Text Query |  Image Query |
-|R@1  R@5  R@10|R@1  R@5  R@10|
-|----|----|----|----|----|----| 
-|13.5|28.6|37.8|20.7|46.5|59.0|
-```
 
 #### Training
 ```bash
