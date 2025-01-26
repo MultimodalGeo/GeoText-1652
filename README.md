@@ -23,6 +23,10 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 
 </div>
 
+## 📰 Breaking News!!!
+
+We have prepared 24G Test for CUDA OUT OF MEMORY users. You could find it in GeoText1652_Dataset/test_24G_version.json
+
 ## 📚 About GeoText-1652
 
 GeoText-1652 is a groundbreaking benchmark dataset for ECCV 2024, focusing on natural language-guided drone navigation with spatial relation matching. This dataset bridges the gap between natural language processing, computer vision, and robotics, paving the way for more intuitive and flexible drone control systems.
