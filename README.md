@@ -25,7 +25,7 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 
 ## 📰 Breaking News!!!
 
-We have prepared 24G Test for CUDA OUT OF MEMORY users. You could find it in GeoText1652_Dataset/test_24G_version.json
+We have prepared 24G Test for CUDA OUT OF MEMORY users. You could find it in : https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset/test_24G_version.json
 
 ## 📚 About GeoText-1652
 
