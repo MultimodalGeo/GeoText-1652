@@ -188,12 +188,12 @@ Evaluation paths:
 - 24GB GPU version (~190 cases): GeoText1652_Dataset/test_24G_version.json
 
 24GB Version Results on Two 3090Ti:
-
+```
 | Text Query | Image Query |
 |R@1  R@5  R@10|R@1  R@5  R@10|
 |----|----|----|----|----|----| 
 |29.9|46.3|54.1|50.1|81.2|90.3|
-
+```
 Full evaluation results are in the paper.
 
 #### Training
