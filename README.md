@@ -175,7 +175,7 @@ Example entry in `train.json`:
 ### Running the Model
 From the `Method` directory:
 ```bash
-cd method
+cd Method
 ```
 
 #### Evaluation
@@ -185,16 +185,21 @@ python3 run.py --task "re_bbox" --dist "l4" --evaluate --output_dir "output/eva"
 
 Evaluation paths:
 - Full test (951 cases): GeoText1652_Dataset/test_951_version.json
-- 24GB GPU version (1/5 size of the Full): Coming Soon
+- 24GB GPU version (~190 cases): GeoText1652_Dataset/test_24G_version.json
 
+24GB Version Results:
+Copy| Text Query | Image Query |
+|R@1  R@5  R@10|R@1  R@5  R@10|
+|----|----|----|----|----|----| 
+|29.9|46.3|54.1|50.1|81.2|90.3|
 
+Full evaluation results are in the paper.
 
 #### Training
 ```bash
 nohup python3 run.py --task "re_bbox" --dist "l4" --output_dir "output/train" --checkpoint "/root/GeoText-1652/GeoText1652_model/geotext_official_checkpoint.pth" &
 ```
 
-Full evaluation results are in the paper.
 
 
 
