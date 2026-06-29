@@ -14,6 +14,7 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 [![Paper](https://img.shields.io/badge/Paper-PDF-red)](https://arxiv.org/pdf/2311.12751)
 [![Poster](https://img.shields.io/badge/Poster-PDF-brightgreen)](https://drive.google.com/file/d/1QtLl3vtwUl-_rC_Ma48Gnaw-bHCMB7Qw/view?usp=share_link)
 [![Project](https://img.shields.io/badge/Project-Website-blue)](https://multimodalgeo.github.io/GeoText/)
+[![Leaderboard](https://img.shields.io/badge/Leaderboard-GeoText--1652-success)](LEADERBOARD.md)
 [![Dataset](https://img.shields.io/badge/Dataset-Download-yellow)](https://drive.google.com/file/d/1vHjysm1VbJnmriKopIgnMxW-ZBR4mXQ1/view?usp=sharing)
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-orange)](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset)
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-blueviolet)](https://huggingface.co/truemanv5666/GeoText1652_model)
@@ -24,6 +25,8 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 </div>
 
 ## 📰 Breaking News!!!
+
+- **2026-06-29**: We launched the official [GeoText-1652 Leaderboard](LEADERBOARD.md) for tracking community submissions on the full test set and the 24GB test split. Pull requests are welcome via [`leaderboard/data.json`](leaderboard/data.json).
 
 We have prepared 24G Test for CUDA OUT OF MEMORY users. You could find it in : https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset     and just use  test_24G_version.json
 
@@ -49,6 +52,16 @@ Training and test sets all include the image, global description, bbox-text pair
 | **Test (Drone)**         | 51,355 | 154,065              | 140,179     | 951      | 39            |
 | **Test (Satellite)**     | 951    | 2,853                | 2,006       | 951      | 39            |
 | **Test (Ground)**        | 2,921  | 8,763                | 4,023       | 793      | 39            |
+
+## 🏆 Leaderboard
+
+We maintain a community leaderboard in [LEADERBOARD.md](LEADERBOARD.md). The primary ranking metric is `r_mean`, computed from Text R@1/R@5/R@10 and Image R@1/R@5/R@10.
+
+To submit a result, open a pull request that adds your entry to [`leaderboard/data.json`](leaderboard/data.json), then run:
+
+```bash
+python3 scripts/render_leaderboard.py
+```
 
 ## 💾 Download Links
 
@@ -199,6 +212,8 @@ Evaluation paths:
 |29.9|46.3|54.1|50.1|81.2|90.3|
 ```
 Full evaluation results are in the paper.
+
+Leaderboard submissions should report the six metrics printed by `Method/re_bbox.py`: `txt_r1`, `txt_r5`, `txt_r10`, `img_r1`, `img_r5`, and `img_r10`.
 
 #### Training
 ```bash

@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "primary_metric": "r_mean",
+  "metric_order": [
+    "txt_r1",
+    "txt_r5",
+    "txt_r10",
+    "img_r1",
+    "img_r5",
+    "img_r10",
+    "r_mean"
+  ],
+  "leaderboards": [
+    {
+      "split": "full_test_951",
+      "name": "Full Test (951 buildings)",
+      "description": "Official GeoText-1652 test_951_version.json evaluation. This is the primary leaderboard.",
+      "entries": [
+        {
+          "id": "ngcg-mllm-internvl-full",
+          "method": "NGCG-MLLM (InternVL3.5-1B)",
+          "submitter": "Chen et al.",
+          "affiliation": "University of North Carolina at Charlotte / MBZUAI",
+          "paper": "https://arxiv.org/abs/2604.10721",
+          "code": "https://yuqichen888.github.io/NGCG-MLLMs-web/",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "InternVL3.5-1B + LoRA",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 25.8,
+            "txt_r5": 41.0,
+            "txt_r10": 49.4,
+            "img_r1": 34.4,
+            "img_r5": 63.3,
+            "img_r10": 75.1
+          },
+          "verified": false,
+          "notes": "Reported in Table 1 of Turning Generators into Retrievers: Unlocking MLLMs for Natural Language-Guided Geo-Localization."
+        },
+        {
+          "id": "hccm-full",
+          "method": "HCCM",
+          "submitter": "Ruan et al.",
+          "affiliation": "Xiamen University",
+          "paper": "https://arxiv.org/abs/2508.21539",
+          "code": "https://github.com/rhao-hur/HCCM",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "X-VLM",
+          "date": "2025",
+          "metrics": {
+            "txt_r1": 14.7,
+            "txt_r5": 26.0,
+            "txt_r10": 32.5,
+            "img_r1": 28.8,
+            "img_r5": 57.3,
+            "img_r10": 69.9
+          },
+          "verified": false,
+          "notes": "Reported in Table 1 of HCCM: Hierarchical Cross-Granularity Contrastive and Matching Learning for Natural Language-Guided Drones."
+        },
+        {
+          "id": "official-geotext-full",
+          "method": "GeoText-1652 official checkpoint",
+          "submitter": "GeoText-1652 Team",
+          "affiliation": "NUS / University of Macau / HDU",
+          "paper": "https://arxiv.org/abs/2311.12751",
+          "code": "https://github.com/MultimodalGeo/GeoText-1652",
+          "checkpoint": "https://huggingface.co/truemanv5666/GeoText1652_model",
+          "training_data": "GeoText-1652 train",
+          "backbone": "Swin-B + BERT",
+          "date": "2024",
+          "metrics": {
+            "txt_r1": 13.6,
+            "txt_r5": 24.6,
+            "txt_r10": 31.2,
+            "img_r1": 26.3,
+            "img_r5": 53.7,
+            "img_r10": 66.9
+          },
+          "verified": true,
+          "notes": "Full-test result reported as Ours in Table 2 of the ECCV 2024 paper."
+        }
+      ]
+    },
+    {
+      "split": "test_24g",
+      "name": "24GB Test",
+      "description": "GPU-friendly test_24G_version.json evaluation for quick comparison on smaller hardware.",
+      "entries": [
+        {
+          "id": "ngcg-mllm-internvl-24g",
+          "method": "NGCG-MLLM (InternVL3.5-1B)",
+          "submitter": "Chen et al.",
+          "affiliation": "University of North Carolina at Charlotte / MBZUAI",
+          "paper": "https://arxiv.org/abs/2604.10721",
+          "code": "https://yuqichen888.github.io/NGCG-MLLMs-web/",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "InternVL3.5-1B + LoRA",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 45.7,
+            "txt_r5": 62.9,
+            "txt_r10": 70.3,
+            "img_r1": 58.3,
+            "img_r5": 85.9,
+            "img_r10": 92.9
+          },
+          "verified": false,
+          "notes": "Reported in Table 2 of Turning Generators into Retrievers: Unlocking MLLMs for Natural Language-Guided Geo-Localization."
+        },
+        {
+          "id": "official-geotext-24g",
+          "method": "GeoText-1652 official checkpoint",
+          "submitter": "GeoText-1652 Team",
+          "affiliation": "NUS / University of Macau / HDU",
+          "paper": "https://arxiv.org/abs/2311.12751",
+          "code": "https://github.com/MultimodalGeo/GeoText-1652",
+          "checkpoint": "https://huggingface.co/truemanv5666/GeoText1652_model",
+          "training_data": "GeoText-1652 train",
+          "backbone": "Swin-B + BERT",
+          "date": "2024",
+          "metrics": {
+            "txt_r1": 29.9,
+            "txt_r5": 46.3,
+            "txt_r10": 54.1,
+            "img_r1": 50.1,
+            "img_r5": 81.2,
+            "img_r10": 90.3
+          },
+          "verified": true,
+          "notes": "README baseline on the 24GB split using two 3090Ti GPUs."
+        }
+      ]
+    }
+  ]
+}

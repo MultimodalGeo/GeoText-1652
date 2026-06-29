@@ -1,0 +1,74 @@
+name: Leaderboard submission
+description: Submit a GeoText-1652 result for review.
+title: "[Leaderboard] <method name>"
+labels:
+  - leaderboard
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting a result. If you can, open a pull request that adds the entry to `leaderboard/data.json`.
+  - type: dropdown
+    id: split
+    attributes:
+      label: Split
+      options:
+        - Full Test (test_951_version.json)
+        - 24GB Test (test_24G_version.json)
+    validations:
+      required: true
+  - type: input
+    id: method
+    attributes:
+      label: Method
+      placeholder: GeoText-1652 official checkpoint
+    validations:
+      required: true
+  - type: input
+    id: training_data
+    attributes:
+      label: Training data
+      placeholder: GeoText-1652 train, plus ...
+    validations:
+      required: true
+  - type: input
+    id: backbone
+    attributes:
+      label: Backbone / model family
+      placeholder: Swin-B + BERT
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Metrics
+      description: Paste the evaluation output or fill all six recall values.
+      value: |
+        txt_r1:
+        txt_r5:
+        txt_r10:
+        img_r1:
+        img_r5:
+        img_r10:
+    validations:
+      required: true
+  - type: input
+    id: paper
+    attributes:
+      label: Paper link
+      placeholder: https://arxiv.org/abs/...
+  - type: input
+    id: code
+    attributes:
+      label: Code link
+      placeholder: https://github.com/...
+  - type: input
+    id: checkpoint
+    attributes:
+      label: Checkpoint link
+      placeholder: https://huggingface.co/...
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Include hardware, evaluation command, and any external data or model pretraining details.
