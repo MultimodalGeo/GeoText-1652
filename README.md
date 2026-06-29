@@ -55,7 +55,22 @@ Training and test sets all include the image, global description, bbox-text pair
 
 ## 🏆 Leaderboard
 
-We maintain a community leaderboard in [LEADERBOARD.md](LEADERBOARD.md). The primary ranking metric is `r_mean`, computed from Text R@1/R@5/R@10 and Image R@1/R@5/R@10.
+We maintain a community leaderboard for GeoText-1652. The primary ranking metric is `r_mean`, computed from Text R@1/R@5/R@10 and Image R@1/R@5/R@10. See [LEADERBOARD.md](LEADERBOARD.md) for the full leaderboard and submission details.
+
+### Full Test (951 buildings)
+
+| Rank | Method | Text R@1 | Text R@5 | Text R@10 | Image R@1 | Image R@5 | Image R@10 | Mean | Links |
+|------|--------|----------|----------|-----------|-----------|-----------|------------|------|-------|
+| 1 | NGCG-MLLM (InternVL3.5-1B) | 25.8 | 41.0 | 49.4 | 34.4 | 63.3 | 75.1 | **48.2** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
+| 2 | HCCM | 14.7 | 26.0 | 32.5 | 28.8 | 57.3 | 69.9 | **38.2** | [paper](https://arxiv.org/abs/2508.21539) / [code](https://github.com/rhao-hur/HCCM) |
+| 3 | GeoText-1652 official checkpoint | 13.6 | 24.6 | 31.2 | 26.3 | 53.7 | 66.9 | **36.1** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
+
+### 24GB Test
+
+| Rank | Method | Text R@1 | Text R@5 | Text R@10 | Image R@1 | Image R@5 | Image R@10 | Mean | Links |
+|------|--------|----------|----------|-----------|-----------|-----------|------------|------|-------|
+| 1 | NGCG-MLLM (InternVL3.5-1B) | 45.7 | 62.9 | 70.3 | 58.3 | 85.9 | 92.9 | **69.3** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
+| 2 | GeoText-1652 official checkpoint | 29.9 | 46.3 | 54.1 | 50.1 | 81.2 | 90.3 | **58.7** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
 
 To submit a result, open a pull request that adds your entry to [`leaderboard/data.json`](leaderboard/data.json), then run:
 
