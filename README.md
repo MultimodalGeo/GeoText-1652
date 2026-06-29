@@ -19,16 +19,12 @@ Meng Chu¹, Zhedong Zheng²*, Wei Ji¹, Tingyu Wang³, Tat-Seng Chua¹
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Dataset-orange)](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset)
 [![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Model-blueviolet)](https://huggingface.co/truemanv5666/GeoText1652_model)
 
-
-
-
 </div>
 
-## 📰 Breaking News!!!
+## 📰 News
 
 - **2026-06-29**: We launched the official [GeoText-1652 Leaderboard](LEADERBOARD.md) for tracking community submissions on the full test set and the 24GB test split. Pull requests are welcome via [`leaderboard/data.json`](leaderboard/data.json).
-
-We have prepared 24G Test for CUDA OUT OF MEMORY users. You could find it in : https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset     and just use  test_24G_version.json
+- We provide a GPU-friendly 24GB test split for CUDA out-of-memory cases. Download it from the [Hugging Face dataset](https://huggingface.co/datasets/truemanv5666/GeoText1652_Dataset) and use `test_24G_version.json`.
 
 ## 📚 About GeoText-1652
 
@@ -55,28 +51,24 @@ Training and test sets all include the image, global description, bbox-text pair
 
 ## 🏆 Leaderboard
 
-We maintain a community leaderboard for GeoText-1652. The primary ranking metric is `r_mean`, computed from Text R@1/R@5/R@10 and Image R@1/R@5/R@10. See [LEADERBOARD.md](LEADERBOARD.md) for the full leaderboard and submission details.
+We maintain a community leaderboard for GeoText-1652. The primary ranking metric is `r_mean`, computed from Text R@1/R@5/R@10 and Image R@1/R@5/R@10. The tables below show a compact homepage view; see [LEADERBOARD.md](LEADERBOARD.md) for all metrics, metadata, and submission details.
 
-### Full Test (951 buildings)
+### Primary Leaderboard: Full Test (951 buildings)
 
-| Rank | Method | Text R@1 | Text R@5 | Text R@10 | Image R@1 | Image R@5 | Image R@10 | Mean | Links |
-|------|--------|----------|----------|-----------|-----------|-----------|------------|------|-------|
-| 1 | NGCG-MLLM (InternVL3.5-1B) | 25.8 | 41.0 | 49.4 | 34.4 | 63.3 | 75.1 | **48.2** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
-| 2 | HCCM | 14.7 | 26.0 | 32.5 | 28.8 | 57.3 | 69.9 | **38.2** | [paper](https://arxiv.org/abs/2508.21539) / [code](https://github.com/rhao-hur/HCCM) |
-| 3 | GeoText-1652 official checkpoint | 13.6 | 24.6 | 31.2 | 26.3 | 53.7 | 66.9 | **36.1** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
+| Rank | Method | Text R@1 | Image R@1 | Mean | Links |
+|------|--------|----------|-----------|------|-------|
+| 1 | NGCG-MLLM (InternVL3.5-1B) | 25.8 | 34.4 | **48.2** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
+| 2 | HCCM | 14.7 | 28.8 | **38.2** | [paper](https://arxiv.org/abs/2508.21539) / [code](https://github.com/rhao-hur/HCCM) |
+| 3 | GeoText-1652 official checkpoint | 13.6 | 26.3 | **36.1** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
 
-### 24GB Test
+### Hardware-friendly Split: 24GB Test
 
-| Rank | Method | Text R@1 | Text R@5 | Text R@10 | Image R@1 | Image R@5 | Image R@10 | Mean | Links |
-|------|--------|----------|----------|-----------|-----------|-----------|------------|------|-------|
-| 1 | NGCG-MLLM (InternVL3.5-1B) | 45.7 | 62.9 | 70.3 | 58.3 | 85.9 | 92.9 | **69.3** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
-| 2 | GeoText-1652 official checkpoint | 29.9 | 46.3 | 54.1 | 50.1 | 81.2 | 90.3 | **58.7** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
+| Rank | Method | Text R@1 | Image R@1 | Mean | Links |
+|------|--------|----------|-----------|------|-------|
+| 1 | NGCG-MLLM (InternVL3.5-1B) | 45.7 | 58.3 | **69.3** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
+| 2 | GeoText-1652 official checkpoint | 29.9 | 50.1 | **58.7** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
 
-To submit a result, open a pull request that adds your entry to [`leaderboard/data.json`](leaderboard/data.json), then run:
-
-```bash
-python3 scripts/render_leaderboard.py
-```
+To submit a result, open a pull request that adds your entry to [`leaderboard/data.json`](leaderboard/data.json). See [LEADERBOARD.md](LEADERBOARD.md) for the full submission format.
 
 ## 💾 Download Links
 
