@@ -3,7 +3,7 @@
 This file tracks papers found through citation search that may contain GeoText-1652 results.
 Only papers with public, sourceable six-metric results should be added to `leaderboard/data.json`.
 
-Last checked: 2026-06-29
+Last checked: 2026-06-30
 
 ## Added to Leaderboard
 
@@ -12,6 +12,7 @@ Last checked: 2026-06-29
 | Towards Natural Language-Guided Drones: GeoText-1652 Benchmark with Spatial Relation Matching | ECCV 2024 | https://arxiv.org/abs/2311.12751 | Added official full-test and 24GB baselines |
 | HCCM: Hierarchical Cross-Granularity Contrastive and Matching Learning for Natural Language-Guided Drones | arXiv 2025 | https://arxiv.org/abs/2508.21539 | Added full-test result |
 | Turning Generators into Retrievers: Unlocking MLLMs for Natural Language-Guided Geo-Localization | arXiv 2026 | https://arxiv.org/abs/2604.10721 | Added full-test and 24GB results |
+| Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment | IEEE TMM 2026 | https://doi.org/10.1109/TMM.2025.3642913 | Added SAA-DGL X-VLM and X2-VLM full-test and 24GB results from Table I of the local PDF |
 
 ## Needs Score Verification
 
@@ -19,7 +20,6 @@ These citing papers appear relevant, but the six GeoText-1652 leaderboard metric
 
 | Paper | Year | Link | Notes |
 | --- | --- | --- | --- |
-| Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment | 2025 | https://doi.org/10.1109/TMM.2025.3642913 | Found via Google Scholar keyword search. OpenAlex marks it closed access; accessible IEEE/Crossref metadata did not expose result tables. |
 | Dual Set Contrastive Learning for Natural Language-Guided Drone Geo-Localization | 2026 | https://doi.org/10.1109/MAI69289.2026.11543778 | OpenAlex abstract says experiments on GeoText-1652; accessible IEEE page did not expose result tables. |
 | Region-Level Cross-Modal Matching Framework for Text-Based Geo-Localization | 2026 | https://doi.org/10.1007/978-981-95-6123-0_53 | Springer abstract says SOTA on GeoText-1652; full results are behind access controls. Google Scholar snippet exposes partial main-test metrics: Image-to-Text R@1/R@5/R@10 = 27.6/54.7/67.4 and Text-to-Image R@1 = 13.7, but Text R@5/R@10 remain hidden. Do not add until all six values are confirmed. |
 | Team Xiaomi EV-AD VLA: Caption-Guided Retrieval System for Cross-Modal Drone Navigation -- Technical Report for IROS 2025 RoboSense Challenge Track 4 | 2025 | https://arxiv.org/abs/2510.02728 | Reports RoboSense Challenge Track 4 single-direction Text-to-Image results (R@1/R@5/R@10 = 31.33/49.09/57.15), not the full six-metric GeoText leaderboard protocol. |

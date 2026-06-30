@@ -39,6 +39,50 @@
           "notes": "Reported in Table 1 of Turning Generators into Retrievers: Unlocking MLLMs for Natural Language-Guided Geo-Localization."
         },
         {
+          "id": "saa-dgl-x2-vlm-full",
+          "method": "SAA-DGL (X2-VLM)",
+          "submitter": "Yuan et al.",
+          "affiliation": "BJUT / BIT / NJUST / University of Surrey",
+          "paper": "https://doi.org/10.1109/TMM.2025.3642913",
+          "code": "",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "X2-VLM",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 16.7,
+            "txt_r5": 29.2,
+            "txt_r10": 36.2,
+            "img_r1": 29.4,
+            "img_r5": 57.2,
+            "img_r10": 69.4
+          },
+          "verified": false,
+          "notes": "Reported in Table I of Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment."
+        },
+        {
+          "id": "saa-dgl-x-vlm-full",
+          "method": "SAA-DGL (X-VLM)",
+          "submitter": "Yuan et al.",
+          "affiliation": "BJUT / BIT / NJUST / University of Surrey",
+          "paper": "https://doi.org/10.1109/TMM.2025.3642913",
+          "code": "",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "X-VLM",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 14.9,
+            "txt_r5": 28.4,
+            "txt_r10": 35.8,
+            "img_r1": 28.2,
+            "img_r5": 56.5,
+            "img_r10": 69.0
+          },
+          "verified": false,
+          "notes": "Reported in Table I of Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment."
+        },
+        {
           "id": "hccm-full",
           "method": "HCCM",
           "submitter": "Ruan et al.",
@@ -110,6 +154,50 @@
           },
           "verified": false,
           "notes": "Reported in Table 2 of Turning Generators into Retrievers: Unlocking MLLMs for Natural Language-Guided Geo-Localization."
+        },
+        {
+          "id": "saa-dgl-x2-vlm-24g",
+          "method": "SAA-DGL (X2-VLM)",
+          "submitter": "Yuan et al.",
+          "affiliation": "BJUT / BIT / NJUST / University of Surrey",
+          "paper": "https://doi.org/10.1109/TMM.2025.3642913",
+          "code": "",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "X2-VLM",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 31.9,
+            "txt_r5": 49.8,
+            "txt_r10": 57.9,
+            "img_r1": 53.3,
+            "img_r5": 83.9,
+            "img_r10": 91.7
+          },
+          "verified": false,
+          "notes": "Reported in Table I of Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment."
+        },
+        {
+          "id": "saa-dgl-x-vlm-24g",
+          "method": "SAA-DGL (X-VLM)",
+          "submitter": "Yuan et al.",
+          "affiliation": "BJUT / BIT / NJUST / University of Surrey",
+          "paper": "https://doi.org/10.1109/TMM.2025.3642913",
+          "code": "",
+          "checkpoint": "",
+          "training_data": "GeoText-1652 train",
+          "backbone": "X-VLM",
+          "date": "2026",
+          "metrics": {
+            "txt_r1": 30.7,
+            "txt_r5": 49.2,
+            "txt_r10": 57.6,
+            "img_r1": 52.1,
+            "img_r5": 83.3,
+            "img_r10": 91.4
+          },
+          "verified": false,
+          "notes": "Reported in Table I of Seeing With Words: Interpretable Language-Guided Drone Geo-Localization via LLM-Enriched Semantic Attribute Alignment."
         },
         {
           "id": "official-geotext-24g",
