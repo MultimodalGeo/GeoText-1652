@@ -60,7 +60,7 @@ We maintain a community leaderboard for GeoText-1652. The primary ranking metric
 | 1 | NGCG-MLLM (InternVL3.5-1B) | 25.8 | 34.4 | **48.2** | [paper](https://arxiv.org/abs/2604.10721) / [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) |
 | 2 | SAA-DGL (X2-VLM) | 16.7 | 29.4 | **39.7** | [paper](https://doi.org/10.1109/TMM.2025.3642913) |
 | 3 | SAA-DGL (X-VLM) | 14.9 | 28.2 | **38.8** | [paper](https://doi.org/10.1109/TMM.2025.3642913) |
-| 4 | HCCM | 14.7 | 28.8 | **38.2** | [paper](https://arxiv.org/abs/2508.21539) / [code](https://github.com/rhao-hur/HCCM) |
+| 4 | HCCM | 14.7 | 28.8 | **38.2** | [paper](https://doi.org/10.1145/3746027.3755489) / [code](https://github.com/rhao-hur/HCCM) |
 | 5 | GeoText-1652 official checkpoint | 13.6 | 26.3 | **36.1** | [paper](https://arxiv.org/abs/2311.12751) / [code](https://github.com/MultimodalGeo/GeoText-1652) |
 
 ### Hardware-friendly Split: 24GB Test

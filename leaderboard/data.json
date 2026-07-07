@@ -87,7 +87,7 @@
           "method": "HCCM",
           "submitter": "Ruan et al.",
           "affiliation": "Xiamen University",
-          "paper": "https://arxiv.org/abs/2508.21539",
+          "paper": "https://doi.org/10.1145/3746027.3755489",
           "code": "https://github.com/rhao-hur/HCCM",
           "checkpoint": "",
           "training_data": "GeoText-1652 train",

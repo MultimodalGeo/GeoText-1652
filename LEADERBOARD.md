@@ -15,7 +15,7 @@ Official GeoText-1652 test_951_version.json evaluation. This is the primary lead
 | 1 | NGCG-MLLM (InternVL3.5-1B) | Chen et al. | GeoText-1652 train | InternVL3.5-1B + LoRA | 25.8 | 41.0 | 49.4 | 34.4 | 63.3 | 75.1 | **48.2** | [paper](https://arxiv.org/abs/2604.10721) [code](https://yuqichen888.github.io/NGCG-MLLMs-web/) | pending |
 | 2 | SAA-DGL (X2-VLM) | Yuan et al. | GeoText-1652 train | X2-VLM | 16.7 | 29.2 | 36.2 | 29.4 | 57.2 | 69.4 | **39.7** | [paper](https://doi.org/10.1109/TMM.2025.3642913) | pending |
 | 3 | SAA-DGL (X-VLM) | Yuan et al. | GeoText-1652 train | X-VLM | 14.9 | 28.4 | 35.8 | 28.2 | 56.5 | 69.0 | **38.8** | [paper](https://doi.org/10.1109/TMM.2025.3642913) | pending |
-| 4 | HCCM | Ruan et al. | GeoText-1652 train | X-VLM | 14.7 | 26.0 | 32.5 | 28.8 | 57.3 | 69.9 | **38.2** | [paper](https://arxiv.org/abs/2508.21539) [code](https://github.com/rhao-hur/HCCM) | pending |
+| 4 | HCCM | Ruan et al. | GeoText-1652 train | X-VLM | 14.7 | 26.0 | 32.5 | 28.8 | 57.3 | 69.9 | **38.2** | [paper](https://doi.org/10.1145/3746027.3755489) [code](https://github.com/rhao-hur/HCCM) | pending |
 | 5 | GeoText-1652 official checkpoint | GeoText-1652 Team | GeoText-1652 train | Swin-B + BERT | 13.6 | 24.6 | 31.2 | 26.3 | 53.7 | 66.9 | **36.1** | [paper](https://arxiv.org/abs/2311.12751) [code](https://github.com/MultimodalGeo/GeoText-1652) [ckpt](https://huggingface.co/truemanv5666/GeoText1652_model) | yes |
 
 ## 24GB Test
